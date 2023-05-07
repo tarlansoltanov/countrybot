@@ -22,5 +22,7 @@ async def back_to_country(call: CallbackQuery, bot: AsyncTeleBot):
 
     async with bot.retrieve_data(call.from_user.id) as data:
         country = data['country']
-        await bot.edit_message_text(get_country_data(country), call.from_user.id, call.message.message_id, reply_markup=country_data_keyboard())
+        await bot.delete_message(call.from_user.id, call.message.message_id)
+        await bot.send_message(call.from_user.id, get_country_data(country), reply_markup=country_data_keyboard())
+        # await bot.edit_message_text(get_country_data(country), call.from_user.id, call.message.message_id, reply_markup=country_data_keyboard())
         await bot.set_state(call.from_user.id, Search.country, call.message.chat.id)
