@@ -44,11 +44,18 @@ def get_country_data(country: dict) -> str:
     data += f"Name (official): {country['name']['official']}\n"
     data += f"Name (common): {country['name']['common']}\n"
     data += f"Capital(s): {' ,'.join(country['capital'])}\n"
+    data += f"Languages: {', '.join(country['languages'].values())}\n"
     data += f"Region: {country['region']}\n"
     data += f"Subregion: {country['subregion']}\n"
     data += f"Area: {country['area']} km²\n"
     data += f"Currency: {', '.join(country['currencies'].keys())}\n"
-    data += f"Is independent: {country['independent']}\n"
+    data += f"TLD (Top Level Domain): {', '.join(country['tld'])}\n"
+    data += f"Demonyms (Male): {country['demonyms']['eng']['m']}\n"
+    data += f"Demonyms (Female): {country['demonyms']['eng']['f']}\n"
+    data += f"Is independent?: {country['independent']}\n"
+    data += f"Is United Nations member?: {country['unMember']}\n"
+    data += f"Start Of the Week: {country['startOfWeek'].capitalize()}\n"
+    data += f"Postal Code format: {country['postalCode']['format']}\n"
 
     return data
 
