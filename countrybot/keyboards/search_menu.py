@@ -9,10 +9,6 @@ def search_menu_keyboard() -> InlineKeyboardMarkup:
         ],
         [
             InlineKeyboardButton('Search By Capital', callback_data='search_by_capital'),
-            InlineKeyboardButton('Search By Currency', callback_data='search_by_currency')
-        ],
-        [
-            InlineKeyboardButton('Search By Language', callback_data='search_by_language'),
             InlineKeyboardButton('Search By Calling Code', callback_data='search_by_calling_code')
         ],
         [

@@ -12,6 +12,15 @@ def get_country_by_name(name: str) -> dict:
     return response.json()[0]
 
 
+def get_country_by_code(code: str) -> dict:
+    response = requests.get(f'{COUNTRY_BASE_URL}alpha/{code}')
+
+    if response.status_code == 404:
+        raise ValueError('Country not found.')
+
+    return response.json()[0]
+
+
 def get_country_data(country: dict) -> str:
     data = ''
     data += f"Name (official): {country['name']['official']}\n"
