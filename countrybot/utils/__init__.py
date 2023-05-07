@@ -59,7 +59,7 @@ def get_regions() -> list:
     if response.status_code != 200:
         raise ValueError('Country not found.')
 
-    return list({country['region'] for country in response.json()})
+    return list(sorted({country['region'] for country in response.json()}))
 
 
 def get_subregions(region: str) -> list:
@@ -68,7 +68,7 @@ def get_subregions(region: str) -> list:
     if response.status_code != 200:
         raise ValueError('Country not found.')
 
-    return list({country['subregion'] for country in response.json()})
+    return list(sorted({country['subregion'] for country in response.json()}))
 
 
 def get_countries_by_subregion(subregion: str) -> list:
@@ -77,4 +77,13 @@ def get_countries_by_subregion(subregion: str) -> list:
     if response.status_code != 200:
         raise ValueError('Country not found.')
 
-    return list({country['name']['common'] for country in response.json()})
+    return list(sorted({country['name']['common'] for country in response.json()}))
+
+
+def get_country_borders_names(country: dict) -> list:
+    response = requests.get(f'{COUNTRY_BASE_URL}alpha?codes={",".join(country["borders"])}&fields=name')
+
+    if response.status_code != 200:
+        raise ValueError('Country not found.')
+
+    return list(sorted({country['name']['common'] for country in response.json()}))
