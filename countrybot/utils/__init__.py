@@ -87,3 +87,7 @@ def get_country_borders_names(country: dict) -> list:
         raise ValueError('Country not found.')
 
     return list(sorted({country['name']['common'] for country in response.json()}))
+
+def get_country_population_options() -> list:
+    return ['Population of Women (Graph)', 'Population of Men (Graph)']
+
