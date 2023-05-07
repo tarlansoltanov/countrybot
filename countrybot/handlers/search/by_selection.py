@@ -24,18 +24,17 @@ async def select_subregion(call: CallbackQuery, bot: AsyncTeleBot):
 async def select_country(call: CallbackQuery, bot: AsyncTeleBot):
     logging.info(f'User {call.from_user.id} selected Subregion: {call.data.split(":")[1]}.')
 
-    await bot.edit_message_text('Select a Country:', call.from_user.id, call.message.message_id, reply_markup=list_keyboard(get_countries_by_subregion(call.data.split(':')[1]), 'country'))
+    await bot.edit_message_text('Select a Country:', call.from_user.id, call.message.message_id, reply_markup=list_keyboard(get_countries_by_subregion(call.data.split(':')[1]), 'selected'))
     await bot.set_state(call.from_user.id, Search.subregion, call.message.chat.id)
 
 
 async def get_by_selection(call: CallbackQuery, bot: AsyncTeleBot):
-    message = call.message
     logging.info(f'User {call.from_user.id} selected country name: {call.data.split(":")[1]}.')
 
     country = get_country_by_name(call.data.split(":")[1])
 
     await bot.edit_message_text(get_country_data(country), call.from_user.id, call.message.message_id, reply_markup=country_data_keyboard())
-    await bot.set_state(message.from_user.id, Search.country, message.chat.id)
+    await bot.set_state(call.from_user.id, Search.country, call.message.chat.id)
 
-    async with bot.retrieve_data(message.from_user.id) as data:
+    async with bot.retrieve_data(call.from_user.id) as data:
         data['country'] = country

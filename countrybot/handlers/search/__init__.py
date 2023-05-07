@@ -27,4 +27,4 @@ def register_search_handlers(bot: AsyncTeleBot):
                                         'search_by_selection', pass_bot=True)
     bot.register_callback_query_handler(select_subregion, lambda call: call.data.startswith('region:'), pass_bot=True)
     bot.register_callback_query_handler(select_country, lambda call: call.data.startswith('subregion:'), pass_bot=True)
-    bot.register_callback_query_handler(get_by_selection, lambda call: call.data.startswith('country:'), pass_bot=True)
+    bot.register_callback_query_handler(get_by_selection, lambda call: call.data.startswith('selected:'), pass_bot=True)
