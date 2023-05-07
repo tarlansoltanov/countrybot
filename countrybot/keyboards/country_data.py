@@ -8,7 +8,7 @@ def country_data_keyboard() -> InlineKeyboardMarkup:
             InlineKeyboardButton('Population', callback_data='population')
         ],
         [
-            InlineKeyboardButton('Back', callback_data='back')
+            InlineKeyboardButton('Back', callback_data='back_to_search')
         ]
     ]
 

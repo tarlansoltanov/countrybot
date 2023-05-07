@@ -27,4 +27,6 @@ async def get_by_name(message: Message, bot: AsyncTeleBot):
 
     await bot.send_message(message.chat.id, get_country_data(country), reply_markup=country_data_keyboard())
     await bot.set_state(message.from_user.id, Search.country, message.chat.id)
-    await bot.add_data(message.from_user.id, country)
+    
+    async with bot.retrieve_data(message.from_user.id) as data:
+        data['country'] = country
