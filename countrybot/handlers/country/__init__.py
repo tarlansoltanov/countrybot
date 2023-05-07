@@ -1,7 +1,7 @@
 from .borders import country_borders
 from .flag import country_flag
 from .coat_of_arms import country_coa
-from .population import country_population, total_population, men_population
+from .population import country_population, total_population, men_population, women_population
 
 from telebot.async_telebot import AsyncTeleBot
 
@@ -15,3 +15,4 @@ def register_country_handlers(bot: AsyncTeleBot):
 
     bot.register_callback_query_handler(total_population, lambda call: call.data == 'population:total', pass_bot=True)
     bot.register_callback_query_handler(men_population, lambda call: call.data == 'population:men', pass_bot=True)
+    bot.register_callback_query_handler(women_population, lambda call: call.data == 'population:women', pass_bot=True)
