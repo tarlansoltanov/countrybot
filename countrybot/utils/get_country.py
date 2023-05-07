@@ -30,6 +30,15 @@ def get_country_by_capital(capital: str) -> dict:
     return response.json()[0]
 
 
+def get_country_by_language(language: str) -> dict:
+    response = requests.get(f'{COUNTRY_BASE_URL}lang/{language}')
+
+    if response.status_code != 200:
+        raise ValueError('Country not found.')
+
+    return response.json()[0]
+
+
 def get_country_data(country: dict) -> str:
     data = ''
     data += f"Name (official): {country['name']['official']}\n"

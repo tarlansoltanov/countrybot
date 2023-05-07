@@ -7,5 +7,5 @@ class Search(StatesGroup):
     name = State()
     code = State()
     capital = State()
-    calling_code = State()
+    language = State()
     selection = State()
