@@ -4,7 +4,6 @@ from telebot.async_telebot import AsyncTeleBot
 from telebot.types import Message, CallbackQuery
 
 from countrybot.keyboards import back_keyboard
-from countrybot.utils import get_country_borders_names
 
 
 async def country_flag(call: CallbackQuery, bot: AsyncTeleBot):
