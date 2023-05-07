@@ -4,9 +4,9 @@ COUNTRY_BASE_URL = 'https://restcountries.com/v3.1/'
 
 
 def get_country_by_name(name: str) -> dict:
-    response = requests.get(f'{COUNTRY_BASE_URL}name/{name}')
+    response = requests.get(f'{COUNTRY_BASE_URL}name/{name}?fullText=true')
 
-    if response.status_code == 404:
+    if response.status_code != 200:
         raise ValueError('Country not found.')
 
     return response.json()[0]
@@ -15,7 +15,16 @@ def get_country_by_name(name: str) -> dict:
 def get_country_by_code(code: str) -> dict:
     response = requests.get(f'{COUNTRY_BASE_URL}alpha/{code}')
 
-    if response.status_code == 404:
+    if response.status_code != 200:
+        raise ValueError('Country not found.')
+
+    return response.json()[0]
+
+
+def get_country_by_capital(capital: str) -> dict:
+    response = requests.get(f'{COUNTRY_BASE_URL}capital/{capital}')
+
+    if response.status_code != 200:
         raise ValueError('Country not found.')
 
     return response.json()[0]
